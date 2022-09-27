@@ -1,0 +1,38 @@
+Api endpoint - from where ur gonna get the details from
+Api request - ask for accesses , i.e interface btw you and external system
+http status codes-https://www.webfx.com/web-development/glossary/http-status-codes/
+
+respose  codes and there meanings usually u get to know by looking at the first number what is the issue here
+1xx - hold on ,processing
+2xx - sucessful
+3xx - access denied
+4xx - u scewed up thing doest exist
+5xx- server issue ie server problem
+
+
+Space Station code
+url -http://open-notify.org/Open-Notify-API/ISS-Location-Now/
+JSON
+http://api.open-notify.org/iss-now.json  #Api endpoit  (also if u put  this directly in your site it will directly give the datas live)
+
+{
+  "message": "success",
+  "timestamp": UNIX_TIME_STAMP,
+  "iss_position": {
+    "latitude": CURRENT_LATITUDE,
+    "longitude": CURRENT_LONGITUDE
+  }
+}
+Extra codes
+(use this to get a basic idea of code)
+
+import requests
+
+respose = requests.get(url="http://api.open-notify.org/iss-now.json")  #it takes the end point from where it will take values, it might also take parameters
+respose.raise_for_status() #if error is there this will give the respose code
+data = respose.json()  #this will print all the data given by api
+logitude = data["iss_position"]['longitude'] #it uses to access specific coloum or data
+latitude = data["iss_position"]['latitude']
+iss_position = (logitude,latitude)
+print(iss_position)
+
